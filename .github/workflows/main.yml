@@ -16,3 +16,7 @@ jobs:
 
       - name: Chackout reposotory
         uses: actions/checkout@v2
+      
+      - name: List reposotory files
+        run: ls -la
+          
