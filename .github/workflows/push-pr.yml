@@ -1,12 +1,10 @@
-on: 
+on:
   push:
     branches:
       - main
       - "release/**"
-    
     paths:
       - "src/**"
-
   pull_request:
     branches:
       - main
@@ -15,8 +13,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout code
-      uses: actions/checkout@v4.2.2
-    - name: Run tests
-      run: npm test
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Adjust based on your project
+
+      - name: Check working directory
+        run: |
+          ls -la
+          pwd
+
+      - name: Run tests
+        run: npm test
+        working-directory: .  # Explicitly set to root directory
